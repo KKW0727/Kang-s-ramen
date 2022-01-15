@@ -1,0 +1,173 @@
+body {
+	background-color: #503211;
+	height: 100vh;
+}
+
+.index_container {
+	padding: 50px;
+}
+
+/* main logo */
+.main_logo {
+	text-align: center;
+}
+
+/* main icon */
+.main_icons {
+	max-width: 780px;
+	margin: 48px auto;
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+}
+
+.main_icons img {
+	width: 60px;
+	height: 170px;
+	margin: 4px 2px;
+}
+
+.main_icons img:hover {
+	opacity: 0.8;
+	transform: rotate(10deg);
+}
+
+/* main info */
+.main_info {
+	max-width: 680px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+}
+
+.main_info p {
+	color: #fff;
+	margin-left: 22px;
+}
+
+.main_info_menu_img {
+	width: 150px;
+}
+
+.game_info {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.game_info a {
+	color: #fff;
+	font-size: 16px;
+}
+
+.teams {
+	display: flex;
+	margin-bottom: 48px;
+}
+
+.teams span {
+	font-size: 32px;
+	color: #fff;
+}
+
+.teams img {
+	width: 65px;
+}
+
+.team {
+	display: flex;
+	align-items: center;
+}
+
+.team:first-child {
+	margin-right: 22px;
+}
+
+.team_score:nth-child(odd) {
+	margin-right: 22px;
+}
+
+.team_score:nth-child(even) {
+	margin-left: 22px;
+}
+
+.invisible {
+	display: none;
+}
+
+.rotate {
+	opacity: 0.8;
+	transform: rotate(10deg);
+}
+
+@media screen and (max-width: 867px) {
+	/* main logo */
+	.main_logo {
+		max-width: 420px;
+		margin: 0 auto;
+	}
+	.main_logo img {
+		width: 100%;
+	}
+
+	/* main icon */
+	.main_icons {
+		max-width: 370px;
+		margin: 28px auto;
+	}
+	.main_icons img {
+		width: 55px;
+		height: 140px;
+	}
+
+	/* main info */
+	.main_info {
+		max-width: 500px;
+		font-size: 0.8em;
+	}
+	.main_info p {
+		margin-left: 18px;
+	}
+	.main_info iframe {
+		width: 150px;
+		height: 150px;
+	}
+	.main_info_menu_img {
+		width: 120px;
+	}
+}
+
+@media screen and (max-width: 460px) {
+	.index_container {
+		padding: 24px 30px;
+	}
+
+	/* main logo */
+	.main_logo {
+		max-width: 300px;
+	}
+
+	/* main icon */
+	.main_icons {
+		max-width: 220px;
+	}
+	.main_icons img {
+		width: 45px;
+		height: 110px;
+	}
+
+	/* main info */
+	.main_info {
+		width: 100%;
+		flex-direction: column;
+		align-items: center;
+	}
+	.main_info p {
+		font-size: 0.7em;
+		text-align: center;
+		margin: 16px 0 0 0;
+	}
+	.main_info_menu_img {
+		width: 100px;
+	}
+}
