@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.kangsRamen.model.dao.UserDao">
+	<select id="signUpPhoneCheck" resultType="Integer">
+		select
+			count(pm.phone_number) + count(um.user_phone) as result
+		from
+			phoneNumber_list_mst pm
+			left outer join user_mst um on(pm.phone_number = um.user_phone)
+		where
+			pm.phone_number = #{signUpPhone}
+
+	</select>
+
+	<select id="signUpEmailCheck" resultType="Integer">
+		select
+			count(user_email) as result
+		from
+			user_mst
+		where
+			user_email = #{signUpEmail}
+
+	</select>
+
+	<insert id="signUpInsert" parameterType="com.spring.kangsRamen.model.json.SignUpVo">
+		insert into
+			user_mst
+		values(
+			0,
+			#{signUpEmail},
+			#{signUpPassword},
+			#{signUpPhone},
+			#{signUpBirthday},
+			#{signUpGender},
+			now(),
+			now()
+		)
+	</insert>
+
+</mapper>
