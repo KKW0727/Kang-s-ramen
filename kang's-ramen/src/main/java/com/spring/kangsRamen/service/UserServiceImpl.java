@@ -7,6 +7,7 @@ import com.spring.kangsRamen.model.dao.UserDao;
 import com.spring.kangsRamen.model.dto.UserDto;
 import com.spring.kangsRamen.model.json.SignInVo;
 import com.spring.kangsRamen.model.json.SignUpVo;
+import com.spring.kangsRamen.model.json.UpdateUserVo;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -37,5 +38,18 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserDto getUser(String signInEmail) {
 		return userDao.getUser(signInEmail);
+	}
+	
+	@Override
+	public int updateUser(UpdateUserVo updateUserVo) {
+		int updateResult = 0;
+		if(updateUserVo.getUpdateUserFlag() == 1) {
+			updateResult = userDao.updateUserPhone(updateUserVo);
+		}else if(updateUserVo.getUpdateUserFlag() == 2) {
+			updateResult = userDao.updateUserPassword(updateUserVo);
+		}else if(updateUserVo.getUpdateUserFlag() == 3) {
+			updateResult = userDao.updateUserBirthday(updateUserVo);
+		}
+		return updateResult;
 	}
 }
