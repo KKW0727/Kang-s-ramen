@@ -30,3 +30,9 @@ main_icons.addEventListener('click', (e) => {
 	});
 
 });
+
+logout_icon.addEventListener('click', () => {
+	if(confirm('本当にログアウトしますか')) {
+		location.href = 'logout';
+	}
+});
