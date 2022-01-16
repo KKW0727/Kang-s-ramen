@@ -61,4 +61,37 @@
     
     </select>
     
+     <update id="updateUserPhone" parameterType="com.spring.kangsRamen.model.json.UpdateUserVo">
+     	update
+      		user_mst
+		set
+ 			user_phone = #{updateUserPhone},
+ 			update_date = now()
+		where
+ 			id =  #{id};
+    
+    </update>
+    
+    <update id="updateUserPassword" parameterType="com.spring.kangsRamen.model.json.UpdateUserVo">
+     	update
+      		user_mst
+		set
+ 			user_password = #{updateUserPassword},
+ 			update_date = now()
+		where
+ 			id =  #{id};
+    
+    </update>
+    
+    <update id ="updateUserBirthday" parameterType="com.spring.kangsRamen.model.json.UpdateUserVo">
+     	update
+      		user_mst
+		set
+ 			user_birthday = #{updateUserBirthday},
+ 			update_date = now()
+		where
+ 			id =  #{id};
+    
+    </update>
+    
 </mapper>
