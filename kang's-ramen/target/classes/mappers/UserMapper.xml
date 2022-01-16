@@ -39,5 +39,26 @@
 			now()
 		)
 	</insert>
-
+	
+	<select id = "signIn" parameterType="com.spring.kangsRamen.model.json.SignInVo" resultType="Integer">
+        select
+        	count(um.user_email) + count(ud.user_password) as result
+        from
+         	user_mst um
+         	left outer join user_mst ud on(um.user_email = ud.user_email 
+         	and ud.user_password = #{signInPassword})
+        where
+         	um.user_email = #{signInEmail}
+    </select>
+    
+    <select id = "getUser" resultType="com.spring.kangsRamen.model.dto.UserDto">
+        select
+         	*
+        from
+         	user_mst
+        where
+         	user_email = #{signInEmail}
+    
+    </select>
+    
 </mapper>
