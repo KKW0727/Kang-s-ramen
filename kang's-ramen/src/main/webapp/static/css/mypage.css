@@ -1,0 +1,26 @@
+input {
+	border: none;
+	color: black;
+	padding: 0;
+}
+
+i {
+	font-size: 20px;
+	margin-left: 6px;
+}
+
+.updatable_input_box_top {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.withdraw_btn {
+	margin-top: 22px;
+}
+
+@media screen and (max-width: 420px) {
+	body {
+		font-size: 0.7em;
+	}
+}
