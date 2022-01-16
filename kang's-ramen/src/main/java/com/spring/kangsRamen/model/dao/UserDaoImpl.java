@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import com.spring.kangsRamen.model.dto.UserDto;
 import com.spring.kangsRamen.model.json.SignInVo;
 import com.spring.kangsRamen.model.json.SignUpVo;
+import com.spring.kangsRamen.model.json.UpdateUserVo;
 
 @Repository
 public class UserDaoImpl implements UserDao {
@@ -39,6 +40,21 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public UserDto getUser(String signInEmail) {
 		return session.selectOne(NAME_SPACE + "getUser", signInEmail);
+	}
+
+	@Override
+	public int updateUserPhone(UpdateUserVo updateUserVo) {
+		return session.update(NAME_SPACE + "updatePhone", updateUserVo);
+	}
+
+	@Override
+	public int updateUserPassword(UpdateUserVo updateUserVo) {
+		return session.update(NAME_SPACE + "updatePassword", updateUserVo);
+	}
+
+	@Override
+	public int updateUserBirthday(UpdateUserVo updateUserVo) {
+		return session.update(NAME_SPACE + "updateBirthday", updateUserVo);
 	}
 
 }
