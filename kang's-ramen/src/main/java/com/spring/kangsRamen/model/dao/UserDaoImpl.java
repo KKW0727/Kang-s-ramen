@@ -12,7 +12,7 @@ import com.spring.kangsRamen.model.json.UpdateUserVo;
 @Repository
 public class UserDaoImpl implements UserDao {
 
-	private static final String NAME_SPACE = "com.spring.ramen.model.dao.UserDao.";
+	private static final String NAME_SPACE = "com.spring.kangsRamen.model.dao.UserDao.";
 
 	@Autowired
 	private SqlSession session;
