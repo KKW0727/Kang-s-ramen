@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.kangsRamen.model.dao.ReservationDao">
+	<insert id="InsertReservationMst"
+		parameterType="com.spring.kangsRamen.model.json.ReservationVo">
+		insert into
+			reservation_mst
+		values(
+			#{id},
+			#{reservation_code},
+			#{date},
+			#{time},
+			#{adult},
+			#{child},
+			#{seat},
+			now(),
+			now()
+		)
+	</insert>
+
+	<insert id="InsertReservationDtl"
+		parameterType="com.spring.kangsRamen.model.json.ReservationVo">
+		insert into
+			reservation_dtl
+		values(
+			#{reservation_code},
+			#{karaiRamen},
+			#{shoyu},
+			#{miso},
+			#{tonkotsu},
+			#{discount},
+			#{price},
+			#{payment}
+		)
+	</insert>
+	
+	<select id ="getMaxReservationCode" resultType="String">
+		select
+  			max(reservation_code)
+		from
+ 			reservation_mst
+    </select>
+   
+</mapper>
