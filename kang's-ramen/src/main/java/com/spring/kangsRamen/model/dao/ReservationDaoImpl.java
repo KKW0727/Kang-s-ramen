@@ -40,4 +40,19 @@ public class ReservationDaoImpl implements ReservationDao {
 	public int updatePayment(int id) {
 		return session.update(NAME_SPACE + "updatePayment", id);
 	}
+
+	@Override
+	public ReservationVo getOneReservation(int reservation_code) {
+		return session.selectOne(NAME_SPACE + "getOneReservation", reservation_code);
+	}
+
+	@Override
+	public int updateReservationMst(ReservationVo reservationVo) {
+		return session.update(NAME_SPACE + "updateReservationMst", reservationVo);
+	}
+
+	@Override
+	public int updateReservationDtl(ReservationVo reservationVo) {
+		return session.update(NAME_SPACE + "updateReservationDtl", reservationVo);
+	}
 }

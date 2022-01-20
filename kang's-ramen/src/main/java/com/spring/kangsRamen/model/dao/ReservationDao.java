@@ -10,5 +10,8 @@ public interface ReservationDao {
 	public int InsertReservationDtl(ReservationVo reservationVo);
 	public String getMaxReservationCode();
 	public List<ReservationVo> getAllReservation(int id);
+	public ReservationVo getOneReservation(int reservation_code);
 	public int updatePayment(int id);
+	public int updateReservationMst(ReservationVo reservationVo);
+	public int updateReservationDtl(ReservationVo reservationVo);
 }
