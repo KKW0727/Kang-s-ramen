@@ -1,5 +1,7 @@
 package com.spring.kangsRamen.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,5 +34,15 @@ public class ReservationServiceImpl implements ReservationService {
 			}
 		}
 		return InsertDtlResult;
+	}
+
+	@Override
+	public List<ReservationVo> getAllReservation(int id) {
+		return reservationDao.getAllReservation(id);
+	}
+
+	@Override
+	public int updatePayment(int id) {
+		return reservationDao.updatePayment(id);
 	}
 }
