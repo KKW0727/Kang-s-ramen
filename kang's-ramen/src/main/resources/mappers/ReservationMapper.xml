@@ -43,5 +43,25 @@
 		from
  			reservation_mst
     </select>
+    
+     <select id="getAllReservation" resultType="com.spring.kangsRamen.model.json.ReservationVo">
+        select
+   			rm.id, rm.reservation_code,rm.date,rm.time,rm.adult,rm.child,rm.seat,rm.create_date,rm.update_date,
+   			rd.karaiRamen,rd.shoyu,rd.miso,rd.tonkotsu,rd.discount,rd.price,rd.payment	
+		from
+   			reservation_mst rm
+     		left outer join reservation_dtl rd on(rm.reservation_code = rd.reservation_code)
+		where
+   			rm.id = #{id};
+   	</select>  
+
+    <update id="updatePayment">
+    	update
+			reservation_dtl
+		set 
+			payment = '決済完了'
+		where 
+			reservation_code = #{id};
+    </update>
    
 </mapper>
