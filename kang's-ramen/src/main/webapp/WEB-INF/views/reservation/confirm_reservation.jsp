@@ -34,7 +34,7 @@
 		<section class="confirm_reservations">
 			<c:forEach var="reservation" items="${reservationList }">
 				<input type="hidden" class="reservation_code" value="${reservation.reservation_code }">
-				<input type="hidden" class=payment value="${reservation.payment }">
+				<input type="hidden" class="payment" value="${reservation.payment }">
 				<article class="confirm_reservation">
 					<section class="confirm_reservation_items">
 						<article class="confirm_reservation_item">
