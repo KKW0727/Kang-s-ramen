@@ -22,13 +22,13 @@ public class PaymentController {
 	@RequestMapping(value = "/payment", method = RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity<?> payment(@RequestBody PaymentVo paymentVo) {
-
+		System.out.println(paymentVo);
 		Stripe.apiKey = "sk_test_51K7ZqTJZ9QJfM1Qbsp1OEHxk2zRr9rtMlFONRtzYWGywRyFESIptlPPWgYJKgj7HYLNYBo9K7TgwLOlevERpIt1J00JE56qjDn";
 
 		// Stripeサーバに決済依頼する内容
 		Map<String, Object> chargeMap = new HashMap<String, Object>();
-		chargeMap.put("amount", 500);
-		chargeMap.put("description", "Tシャツ");
+		chargeMap.put("amount", paymentVo.getPrice());
+		chargeMap.put("description", "ラーメン");
 		chargeMap.put("currency", "jpy");
 		chargeMap.put("source", paymentVo.getStripeToken());
 
