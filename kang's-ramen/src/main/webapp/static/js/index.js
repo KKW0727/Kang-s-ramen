@@ -31,8 +31,28 @@ main_icons.addEventListener('click', (e) => {
 
 });
 
+reservation_icons.forEach((reservation_icon, reservation_iconIndex) => {
+	reservation_icon.addEventListener('click' ,() => {
+		if(login_user.value == '') {
+			alert('ログインが必要です!!');
+		}else {
+			if(reservation_iconIndex == 0) {
+				let game_result = 0;
+				if(my_team_score.textContent > opponent_team_score.textContent){
+					game_result = 1;
+				}else if(my_team_score.textContent < opponent_team_score.textContent || my_team_score.textContent == opponent_team_score.textContent){
+					game_result = 2;
+				}
+				location.href = 'reservation?game_result=' + game_result;
+			}else if(reservation_iconIndex == 1) {
+				location.href = 'confirm-reservation';
+			}
+		}
+	})
+});
+
 logout_icon.addEventListener('click', () => {
-	if(confirm('本当にログアウトしますか')) {
+	if (confirm('本当にログアウトしますか')) {
 		location.href = 'logout';
 	}
 });
