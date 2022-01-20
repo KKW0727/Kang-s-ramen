@@ -45,4 +45,23 @@ public class ReservationServiceImpl implements ReservationService {
 	public int updatePayment(int id) {
 		return reservationDao.updatePayment(id);
 	}
+
+	@Override
+	public ReservationVo getOneReservation(int reservation_code) {
+		return reservationDao.getOneReservation(reservation_code);
+	}
+
+	@Override
+	public int updateReservation(ReservationVo reservationVo) {
+		int updateDtlResult = 0;
+		int updateMstResult = reservationDao.updateReservationMst(reservationVo);
+		if (updateMstResult == 1) {
+			updateDtlResult = reservationDao.updateReservationDtl(reservationVo);
+			if (updateDtlResult == 1) {
+				return updateDtlResult;
+			}
+		}
+		return updateDtlResult;
+	}
+
 }

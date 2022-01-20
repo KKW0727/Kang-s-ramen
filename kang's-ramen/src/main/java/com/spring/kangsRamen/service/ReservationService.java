@@ -8,5 +8,7 @@ public interface ReservationService {
 
 	public int InsertReservation(ReservationVo reservationVo);
 	public List<ReservationVo> getAllReservation(int id);
+	public ReservationVo getOneReservation(int reservation_code);
 	public int updatePayment(int id);
+	public int updateReservation(ReservationVo reservationVo);
 }
