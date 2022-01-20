@@ -100,9 +100,6 @@
 					<section class="confirm_reservation_btns">
 						<c:choose>
 							<c:when test="${reservation.payment eq '未決済'}">
-								<input type="hidden" name="reservation_code" value="${reservation.reservation_code }">
-								<input type="hidden" name="payment" value="決済完了">
-								<input type="hidden" name="user_email" value="${login_user.user_email }">
 								<button type="button" class="payment_btn">決済する</button>
 							</c:when>
 							<c:otherwise>
