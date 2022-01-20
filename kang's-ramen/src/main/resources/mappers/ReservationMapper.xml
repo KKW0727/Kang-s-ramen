@@ -54,6 +54,17 @@
 		where
    			rm.id = #{id};
    	</select>  
+   	
+   	<select id="getOneReservation" resultType="com.spring.kangsRamen.model.json.ReservationVo">
+		select 
+			rm.id, rm.reservation_code,rm.date,rm.time,rm.adult,rm.child,rm.seat,rm.create_date,rm.update_date,
+   			rd.karaiRamen,rd.shoyu,rd.miso,rd.tonkotsu,rd.discount,rd.price,rd.payment	
+		from 
+			reservation_mst rm 
+			left outer join reservation_dtl rd on(rm.reservation_code = rd.reservation_code) 
+		where 
+			rd.reservation_code = #{reservation_code};
+	</select>
 
     <update id="updatePayment">
     	update
@@ -63,5 +74,32 @@
 		where 
 			reservation_code = #{id};
     </update>
+    
+    <update id="updateReservationMst" parameterType="com.spring.kangsRamen.model.json.ReservationVo">
+       update
+			reservation_mst
+		set
+			date = #{date},
+			time = #{time},
+			adult = #{adult},
+			child = #{child},
+			seat = #{seat},
+			update_date = now()
+		where
+			reservation_code = #{reservation_code};
+     </update>
+     
+      <update id="updateReservationDtl" parameterType="com.spring.kangsRamen.model.json.ReservationVo">
+       update
+			reservation_dtl
+		set
+			karaiRamen = #{karaiRamen},
+    		shoyu = #{shoyu},
+    		miso = #{miso},
+    		tonkotsu = #{tonkotsu},
+    		price = #{price}
+    	where
+			reservation_code = #{reservation_code};	
+     </update>
    
 </mapper>
