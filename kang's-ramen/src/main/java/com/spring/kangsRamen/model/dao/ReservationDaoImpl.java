@@ -1,5 +1,7 @@
 package com.spring.kangsRamen.model.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -27,5 +29,15 @@ public class ReservationDaoImpl implements ReservationDao {
 	@Override
 	public String getMaxReservationCode() {
 		return session.selectOne(NAME_SPACE + "getMaxReservationCode");
+	}
+
+	@Override
+	public List<ReservationVo> getAllReservation(int id) {
+		return session.selectList(NAME_SPACE + "getAllReservation", id);
+	}
+
+	@Override
+	public int updatePayment(int id) {
+		return session.update(NAME_SPACE + "updatePayment", id);
 	}
 }
