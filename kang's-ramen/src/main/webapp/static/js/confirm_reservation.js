@@ -5,13 +5,15 @@ const delete_reservation_btns = document.querySelectorAll('.delete_reservation_b
 const update_reservation_btns = document.querySelectorAll('.update_reservation_btn');
 const payment_btns = document.querySelectorAll('.payment_btn');
 const menu_prices = document.querySelectorAll('.menu_price');
+const payments = document.querySelectorAll('.payment');
 
 let paymentBtnIndex = 0;
 
 let paymentRequest = {
 	stripeToken: '',
 	stripeTokenType: '',
-	stripeEmail: ''
+	stripeEmail: '',
+	price: 0
 }
 
 //update payment
@@ -52,11 +54,12 @@ payment_btns.forEach((payment_btn, payment_btn_index) => {
 	payment_btn.addEventListener('click', () => {
 		handler.open({
 			name: "kang'sラーメン",
-			description: '',
+			description: 'ラーメン',
 			currency: 'jpy',
 			amount: menu_prices[payment_btn_index].textContent + '円'
 		});
 		paymentBtnIndex = payment_btn_index;
+		paymentRequest.price = menu_prices[payment_btn_index].textContent;
 	});
 });
 
@@ -79,3 +82,13 @@ function payment() {
 		}
 	});
 }
+
+update_reservation_btns.forEach((update_reservation_btn, update_reservation_btn_index) => {
+	update_reservation_btn.addEventListener('click', () => {
+		if (payments[update_reservation_btn_index].value == '決済完了') {
+			alert('決済キャンセル後、変更できます。');
+		} else {
+			location.href = 'update-reservation?reservation_code=' + reservation_codes[update_reservation_btn_index].value;
+		}
+	});
+});
