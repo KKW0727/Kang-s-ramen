@@ -1,5 +1,7 @@
 package com.spring.kangsRamen.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -11,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.kangsRamen.model.dto.UserDto;
 import com.spring.kangsRamen.model.json.ReservationVo;
@@ -39,24 +40,4 @@ public class ReservationController {
 	public String reservation(@RequestBody ReservationVo reservationVo) {
 		return Integer.toString(reservationService.InsertReservation(reservationVo));
 	}
-
-	@ResponseBody
-	@RequestMapping(value = "/update-payment", method = RequestMethod.PUT)
-	public String updatePayment(@RequestParam int reservation_code) {
-		return Integer.toString(reservationService.updatePayment(reservation_code));
-	}
-
-	@RequestMapping(value = "/update-reservation", method = RequestMethod.GET)
-	public ModelAndView updateReservation(@RequestParam int reservation_code) {
-		ModelAndView mav = new ModelAndView("reservation/update_reservation");
-		mav.addObject("reservationOne", reservationService.getOneReservation(reservation_code));
-		return mav;
-	}
-
-	@ResponseBody
-	@RequestMapping(value = "/update-reservation", method = RequestMethod.PUT)
-	public String updateReservation(@RequestBody ReservationVo reservationVo) {
-		return Integer.toString(reservationService.updateReservation(reservationVo));
-	}
-
 }
