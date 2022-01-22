@@ -101,5 +101,21 @@
     	where
 			reservation_code = #{reservation_code};	
      </update>
-   
+     
+     <delete id="deleteReservationDtl">
+   	 	delete	
+ 		from
+   			reservation_dtl
+  		where
+    		reservation_code = #{reservation_code};
+	</delete>
+     
+  	<delete id="deleteReservationMst">
+   	 	delete	
+ 		from
+   			reservation_mst
+  		where
+    		reservation_code = #{reservation_code};  
+	</delete>
+
 </mapper>
