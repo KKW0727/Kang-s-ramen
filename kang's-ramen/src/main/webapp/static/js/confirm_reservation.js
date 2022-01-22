@@ -92,3 +92,33 @@ update_reservation_btns.forEach((update_reservation_btn, update_reservation_btn_
 		}
 	});
 });
+
+//click delete reservation button
+delete_reservation_btns.forEach((delete_reservation_btn, delete_reservation_btn_index) => {
+delete_reservation_btn.addEventListener('click', () => {
+	if(confirm('本当にキャンセルしますか?')) {
+		deleteReservation(reservation_codes[delete_reservation_btn_index].value);
+	}
+	});
+});
+
+//delete reservation
+function deleteReservation(reservation_code) {
+	$.ajax({
+		type:"delete",
+		url: "delete-reservation/" + reservation_code,
+		dataType: "text",
+		success: function(data) {
+			if(data == 1) {
+				alert('予約キャンセルが完了しました');
+				location.replace('confirm-reservation');
+			}else {
+				alert('予約キャンセルに失敗しました');
+			}	
+		},
+		error: function() {
+			
+		}
+		
+	});
+}
