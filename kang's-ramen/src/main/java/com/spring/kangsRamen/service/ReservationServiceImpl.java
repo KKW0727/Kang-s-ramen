@@ -64,4 +64,18 @@ public class ReservationServiceImpl implements ReservationService {
 		return updateDtlResult;
 	}
 
+	@Override
+	public int deleteReservation(int reservation_code) {
+
+		int deleteMstResult = 0;
+		int deleteDtlResult = reservationDao.deleteReservationDtl(reservation_code);
+		if (deleteDtlResult == 1) {
+			deleteMstResult = reservationDao.deleteReservationMst(reservation_code);
+			if (deleteMstResult == 1) {
+				return deleteMstResult;
+			}
+		}
+		return deleteMstResult;
+	}
+
 }

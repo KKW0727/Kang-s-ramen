@@ -11,4 +11,5 @@ public interface ReservationService {
 	public ReservationVo getOneReservation(int reservation_code);
 	public int updatePayment(int id);
 	public int updateReservation(ReservationVo reservationVo);
+	public int deleteReservation(int reservation_code);
 }
