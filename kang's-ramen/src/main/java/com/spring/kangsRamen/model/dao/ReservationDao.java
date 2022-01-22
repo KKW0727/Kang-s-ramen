@@ -14,4 +14,6 @@ public interface ReservationDao {
 	public int updatePayment(int id);
 	public int updateReservationMst(ReservationVo reservationVo);
 	public int updateReservationDtl(ReservationVo reservationVo);
+	public int deleteReservationDtl(int reservation_code);
+	public int deleteReservationMst(int reservation_code);
 }

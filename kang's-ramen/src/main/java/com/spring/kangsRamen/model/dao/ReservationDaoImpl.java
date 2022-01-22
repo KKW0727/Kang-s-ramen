@@ -55,4 +55,15 @@ public class ReservationDaoImpl implements ReservationDao {
 	public int updateReservationDtl(ReservationVo reservationVo) {
 		return session.update(NAME_SPACE + "updateReservationDtl", reservationVo);
 	}
+
+	@Override
+	public int deleteReservationDtl(int reservation_code) {
+		return session.delete(NAME_SPACE + "deleteReservationDtl", reservation_code);
+	}
+
+	@Override
+	public int deleteReservationMst(int reservation_code) {
+		return session.delete(NAME_SPACE + "deleteReservationMst", reservation_code);
+	}
+
 }
