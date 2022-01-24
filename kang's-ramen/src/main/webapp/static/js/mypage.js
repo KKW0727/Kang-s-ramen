@@ -43,6 +43,10 @@ update_btns.forEach((updateBtn, updateBtnIndex) => {
 	});
 });
 
+//click withdraw button
+withdraw_btn.addEventListener('click', () => {
+	getNumberReservation();
+});
 
 //check empty
 function checkEmpty(input, inputIndex) {
@@ -204,6 +208,50 @@ function updateUserInfo() {
 		error: function() {
 			alert('');
 		}
+	});
+}
+
+//get number reservation
+function getNumberReservation() {
+	$.ajax({
+		type: "get",
+		url: "get-number-reservation/" + id.value,
+		dataType: "text",
+		success: function(data) {
+			if (data == 0) {
+				if (confirm('本当にキャンセルしますか?')) {
+					withdraw();
+				}
+			} else {
+				if (confirm(`予約した${data}件もキャンセルされます。そのまま続けてもよろしいですか?`)) {
+					withdraw();
+				}
+			}
+		},
+		error: function() {
+
+		}
+	})
+}
+
+//withdraw
+function withdraw() {
+	$.ajax({
+		type: "delete",
+		url: "withdraw/" + id.value,
+		dataType: "text",
+		success: function(data) {
+			if (data == 1) {
+				alert('会員退会が完了しました。これまで kang’sラーメンをご利用いただきありがとうございました!');
+				location.href = 'index';
+			} else if (data == 0) {
+				alert('会員退会に失敗しました。');
+			}
+		},
+		errror: function() {
+
+		}
+
 	});
 }
 
