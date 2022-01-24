@@ -94,4 +94,13 @@
     
     </update>
     
+   	<delete id ="withdraw">
+    	delete
+		
+		from
+			user_mst
+		where
+		 	id =  #{id};
+    </delete>
+    
 </mapper>
