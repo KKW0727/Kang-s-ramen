@@ -52,4 +52,9 @@ public class UserServiceImpl implements UserService {
 		}
 		return updateResult;
 	}
+	
+	@Override
+	public int withdraw(int id) {
+		return userDao.withdraw(id);
+	}
 }

@@ -57,4 +57,9 @@ public class UserDaoImpl implements UserDao {
 		return session.update(NAME_SPACE + "updateBirthday", updateUserVo);
 	}
 
+	@Override
+	public int withdraw(int id) {
+		return session.delete(NAME_SPACE + "withdraw", id);
+	}
+
 }

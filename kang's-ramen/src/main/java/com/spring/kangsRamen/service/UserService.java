@@ -13,4 +13,5 @@ public interface UserService {
 	public int signIn(SignInVo signInVo);
 	public UserDto getUser(String signInEmail);
 	public int updateUser(UpdateUserVo updateUserVo);
+	public int withdraw(int id);
 }

@@ -15,4 +15,5 @@ public interface UserDao {
 	public int updateUserPhone(UpdateUserVo updateUserVo);
 	public int updateUserPassword(UpdateUserVo updateUserVo);
 	public int updateUserBirthday(UpdateUserVo updateUserVo);
+	public int withdraw(int id);
 }
