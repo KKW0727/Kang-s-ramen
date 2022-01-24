@@ -27,7 +27,7 @@
 		<h3>予約件数 ${fn:length(reservationList) }件</h3>
 		<c:if test="${fn:length(reservationList) == 0}">
 			<h1 class="empty_reservation">
-				<img src="images/confirm_reservation_img.png">
+				<img src="images/reservation/confirm_reservation_img.png">
 			</h1>
 		</c:if>
 		<!-- reservation info -->
