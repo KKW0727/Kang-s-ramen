@@ -20,6 +20,9 @@
 
 	<input type="hidden" class="id" value="${login_user.id }">
 	<input type="hidden" class="game_result" value="${game_result}">
+	<div class="loading_img_container invisible">
+	<img src="images/reservation/loading_img.gif" class="loading_img" width="150">
+	</div>
 	<div class="reservation_container">
 		<!-- reservation left -->
 		<section id="reservation_left">
