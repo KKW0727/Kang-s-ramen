@@ -15,7 +15,7 @@ public class ReservationVo {
 	private int tonkotsu;
 	private String discount;
 	private int price;
-	private String payment;
+	private String payment_key;
 
 	public int getId() {
 		return id;
@@ -121,12 +121,12 @@ public class ReservationVo {
 		this.price = price;
 	}
 
-	public String getPayment() {
-		return payment;
+	public String getPayment_key() {
+		return payment_key;
 	}
 
-	public void setPayment(String payment) {
-		this.payment = payment;
+	public void setPayment_key(String payment_key) {
+		this.payment_key = payment_key;
 	}
 
 	@Override
@@ -134,7 +134,7 @@ public class ReservationVo {
 		return "ReservationVo [id=" + id + ", reservation_code=" + reservation_code + ", date=" + date + ", time="
 				+ time + ", adult=" + adult + ", child=" + child + ", seat=" + seat + ", karaiRamen=" + karaiRamen
 				+ ", shoyu=" + shoyu + ", miso=" + miso + ", tonkotsu=" + tonkotsu + ", discount=" + discount
-				+ ", price=" + price + ", payment=" + payment + "]";
+				+ ", price=" + price + ", payment_key=" + payment_key + "]";
 	}
 
 }
