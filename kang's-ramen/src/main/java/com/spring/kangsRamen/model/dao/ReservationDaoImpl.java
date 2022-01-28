@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.spring.kangsRamen.model.json.InsertPaymentVo;
 import com.spring.kangsRamen.model.json.ReservationVo;
 
 @Repository
@@ -64,6 +65,11 @@ public class ReservationDaoImpl implements ReservationDao {
 	@Override
 	public int deleteReservationMst(int reservation_code) {
 		return session.delete(NAME_SPACE + "deleteReservationMst", reservation_code);
+	}
+
+	@Override
+	public int insertPayment(InsertPaymentVo insertPaymentVo) {
+		return session.insert(NAME_SPACE + "insertPayment", insertPaymentVo);
 	}
 
 }

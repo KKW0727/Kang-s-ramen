@@ -2,6 +2,7 @@ package com.spring.kangsRamen.model.dao;
 
 import java.util.List;
 
+import com.spring.kangsRamen.model.json.InsertPaymentVo;
 import com.spring.kangsRamen.model.json.ReservationVo;
 
 public interface ReservationDao {
@@ -16,4 +17,5 @@ public interface ReservationDao {
 	public int updateReservationDtl(ReservationVo reservationVo);
 	public int deleteReservationDtl(int reservation_code);
 	public int deleteReservationMst(int reservation_code);
+	public int insertPayment(InsertPaymentVo insertPaymentVo);
 }
