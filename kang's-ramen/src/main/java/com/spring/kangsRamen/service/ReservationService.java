@@ -2,6 +2,7 @@ package com.spring.kangsRamen.service;
 
 import java.util.List;
 
+import com.spring.kangsRamen.model.json.InsertPaymentVo;
 import com.spring.kangsRamen.model.json.ReservationVo;
 
 public interface ReservationService {
@@ -12,4 +13,5 @@ public interface ReservationService {
 	public int updatePayment(int id);
 	public int updateReservation(ReservationVo reservationVo);
 	public int deleteReservation(int reservation_code);
+	public int insertPayment(InsertPaymentVo insertPaymentVo);
 }

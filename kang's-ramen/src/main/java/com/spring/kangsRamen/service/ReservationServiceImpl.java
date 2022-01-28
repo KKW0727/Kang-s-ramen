@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.kangsRamen.model.dao.ReservationDao;
+import com.spring.kangsRamen.model.json.InsertPaymentVo;
 import com.spring.kangsRamen.model.json.ReservationVo;
 
 @Service
@@ -17,23 +18,25 @@ public class ReservationServiceImpl implements ReservationService {
 	@Override
 	public int InsertReservation(ReservationVo reservationVo) {
 
-		String MaxReservationCode = reservationDao.getMaxReservationCode();
-		if (MaxReservationCode == null) {
+		String maxReservationCode = reservationDao.getMaxReservationCode();
+		if (maxReservationCode == null) {
 			reservationVo.setReservation_code(1);
+			maxReservationCode = "1";
 		} else {
-			reservationVo.setReservation_code(Integer.parseInt(MaxReservationCode) + 1);
+			reservationVo.setReservation_code(Integer.parseInt(maxReservationCode) + 1);
+			maxReservationCode = Integer.toString(Integer.parseInt(maxReservationCode) + 1);
 		}
 
-		int InsertDtlResult = 0;
+		int insertDtlResult = 0;
 
-		int InsertMstResult = reservationDao.InsertReservationMst(reservationVo);
-		if (InsertMstResult == 1) {
-			InsertDtlResult = reservationDao.InsertReservationDtl(reservationVo);
-			if (InsertDtlResult == 1) {
-				return InsertDtlResult;
+		int insertMstResult = reservationDao.InsertReservationMst(reservationVo);
+		if (insertMstResult == 1) {
+			insertDtlResult = reservationDao.InsertReservationDtl(reservationVo);
+			if (insertDtlResult == 1) {
+				return Integer.parseInt(maxReservationCode);
 			}
 		}
-		return InsertDtlResult;
+		return insertDtlResult;
 	}
 
 	@Override
@@ -76,6 +79,11 @@ public class ReservationServiceImpl implements ReservationService {
 			}
 		}
 		return deleteMstResult;
+	}
+
+	@Override
+	public int insertPayment(InsertPaymentVo insertPaymentVo) {
+		return reservationDao.insertPayment(insertPaymentVo);
 	}
 
 }
