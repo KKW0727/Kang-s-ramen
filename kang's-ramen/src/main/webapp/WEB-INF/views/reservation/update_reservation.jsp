@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 
@@ -8,9 +10,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>kang'sラーメン予約変更</title>
 <script src="https://kit.fontawesome.com/cda6a13e2d.js" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="css/reset.css">
-<link rel="stylesheet" href="css/update_reservation.css">
-<script src="js/update_reservation.js" defer></script>
+<link rel="stylesheet" href="${path }/css/reset.css">
+<link rel="stylesheet" href="${path }/css/update_reservation.css">
+<script src="${path }/js/update_reservation.js" defer></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 
@@ -78,7 +80,7 @@
 				<section class="menu_container">
 					<article class="menu">
 						<p>辛いラーメン</p>
-						<img src="images/reservation/ramen1.png" alt="" width="100" height="100">
+						<img src="${path }/images/reservation/ramen1.png" alt="" width="100" height="100">
 						<section class="select_num">
 							<i class="fas fa-plus-circle plus_btn"></i> 
 							<span class="num_menu">${reservationOne.karaiRamen }</span> 
@@ -88,7 +90,7 @@
 					
 					<article class="menu">
 						<p>醤油</p>
-						<img src="images/reservation/ramen2.png" alt="" width="100" height="100">
+						<img src="${path }/images/reservation/ramen2.png" alt="" width="100" height="100">
 						<section class="select_num">
 							<i class="fas fa-plus-circle plus_btn"></i> 
 							<span class="num_menu">${reservationOne.shoyu }</span> 
@@ -101,7 +103,7 @@
 
 					<article class="menu">
 						<p>味噌</p>
-						<img src="images/reservation/ramen3.png" alt="" width="100" height="100">
+						<img src="${path }/images/reservation/ramen3.png" alt="" width="100" height="100">
 						<section class="select_num">
 							<i class="fas fa-plus-circle plus_btn"></i> 
 							<span class="num_menu">${reservationOne.miso }</span> 
@@ -110,7 +112,7 @@
 					</article>
 					<article class="menu">
 						<p>とんこつ</p>
-						<img src="images/reservation/ramen4.png" alt="" width="100" height="100">
+						<img src="${path }/images/reservation/ramen4.png" alt="" width="100" height="100">
 						<section class="select_num">
 							<i class="fas fa-plus-circle plus_btn"></i> 
 							<span class="num_menu">${reservationOne.tonkotsu }</span> 
