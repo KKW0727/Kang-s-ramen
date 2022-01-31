@@ -1,21 +1,18 @@
 package com.spring.kangsRamen.controller;
 
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.kangsRamen.model.dto.UserDto;
-import com.spring.kangsRamen.model.json.ReservationVo;
 import com.spring.kangsRamen.service.ReservationService;
 
 @Controller
@@ -35,9 +32,22 @@ public class ReservationController {
 		return "reservation/reservation";
 	}
 
-	@ResponseBody
-	@RequestMapping(value = "/reservation", method = RequestMethod.POST)
-	public String reservation(@RequestBody ReservationVo reservationVo) {
-		return Integer.toString(reservationService.InsertReservation(reservationVo));
+	@RequestMapping(value = "/reservations", method = RequestMethod.GET)
+	public ModelAndView confirmReservation(HttpServletRequest request) {
+
+		HttpSession session = request.getSession();
+		UserDto user = (UserDto) session.getAttribute("login_user");
+
+		ModelAndView mav = new ModelAndView("reservation/confirm_reservation");
+		mav.addObject("reservationList", reservationService.getAllReservation(user.getId()));
+		return mav;
 	}
+
+	@RequestMapping(value = "/reservations/{reservation_code}", method = RequestMethod.GET)
+	public ModelAndView updateReservation(@PathVariable int reservation_code) {
+		ModelAndView mav = new ModelAndView("reservation/update_reservation");
+		mav.addObject("reservationOne", reservationService.getOneReservation(reservation_code));
+		return mav;
+	}
+
 }
