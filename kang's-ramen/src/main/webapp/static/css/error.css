@@ -1,0 +1,9 @@
+.error_container {
+	max-width: 1200px;
+	margin: 150px auto;
+	text-align: center;
+}
+
+.error_container i {
+	font-size: 75px;
+}
