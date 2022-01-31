@@ -31,11 +31,11 @@
 			<section class="main_icons">
 				<c:choose>
 					<c:when test="${empty login_user }">
-						<img src="images/index/user_menu1.png" class="main_user_icon" onclick="location.href = 'sign-in'">
-						<img src="images/index/user_menu2.png" class="main_user_icon" onclick="location.href = 'sign-up'">
+						<img src="images/index/user_menu1.png" class="main_user_icon" onclick="location.href = 'login'">
+						<img src="images/index/user_menu2.png" class="main_user_icon" onclick="location.href = 'registry'">
 					</c:when>
 					<c:otherwise>
-						<img src="images/index/user_menu3.png" class="main_user_icon" onclick="location.href = 'mypage'">
+						<img src="images/index/user_menu3.png" class="main_user_icon" onclick="location.href = 'users/${login_user.id}'">
 						<img src="images/index/user_menu4.png" class="logout main_user_icon">
 					</c:otherwise>
 				</c:choose>
