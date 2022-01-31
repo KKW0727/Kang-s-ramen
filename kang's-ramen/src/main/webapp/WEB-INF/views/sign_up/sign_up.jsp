@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,9 +11,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, user-scalable= no">
-<link rel="stylesheet" href="css/reset.css">
-<link rel="stylesheet" href="css/sign.css">
-<script src="js/sign_up.js" defer></script>
+<link rel="stylesheet" href="${path }/css/reset.css">
+<link rel="stylesheet" href="${path }/css/sign.css">
+<script src="${path }/js/sign_up.js" defer></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 
