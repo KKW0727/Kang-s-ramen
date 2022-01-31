@@ -104,7 +104,7 @@ function checkPhone(input, inputIndex) {
 
 	$.ajax({
 		type: "post",
-		url: "sign-up-phoneCheck",
+		url: "account/registry/email-check",
 		data: {
 			signUpPhone: input.value
 		},
@@ -187,7 +187,7 @@ function checkBirthday(input, inputIndex) {
 function updateUserInfo() {
 	$.ajax({
 		type: "put",
-		url: "update-user",
+		url: "users/" + updateUser.id,
 		data: JSON.stringify(updateUser),
 		contentType: "application/json;charset=UTF-8",
 		dataType: "text",
@@ -215,7 +215,7 @@ function updateUserInfo() {
 function getNumberReservation() {
 	$.ajax({
 		type: "get",
-		url: "get-number-reservation/" + id.value,
+		url: "num-reservation/" + id.value,
 		dataType: "text",
 		success: function(data) {
 			if (data == 0) {
@@ -238,7 +238,7 @@ function getNumberReservation() {
 function withdraw() {
 	$.ajax({
 		type: "delete",
-		url: "withdraw/" + id.value,
+		url: "users/" + id.value,
 		dataType: "text",
 		success: function(data) {
 			if (data == 1) {
