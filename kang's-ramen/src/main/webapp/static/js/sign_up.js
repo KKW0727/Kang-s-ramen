@@ -109,7 +109,7 @@ function checkPhoneFormat(input) {
      
         $.ajax({
             type: "post",
-            url: "sign-up-phoneCheck",
+            url: "registry/phone-check",
             data: {
                 signUpPhone: input.value
             },
@@ -149,7 +149,7 @@ function checkPhoneFormat(input) {
     function checkEmail(input) {
           $.ajax({
              type: "post",
-             url:"sign-up-emailCheck",
+             url:"registry/email-check",
              data: {
                     signUpEmail : input.value
                   },
@@ -238,7 +238,7 @@ function checkPhoneFormat(input) {
 
 	  $.ajax({
 		 type: "post",
-		 url : "sign-up",
+		 url : "users",
 		 data: JSON.stringify(signUpData),
 		 contentType: "application/json;charset=UTF-8",
 		 dataType: "text",

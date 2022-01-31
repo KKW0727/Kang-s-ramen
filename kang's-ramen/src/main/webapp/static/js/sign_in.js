@@ -65,7 +65,7 @@ function checkEmailFormat(input) {
 function signInSubmit() {
 	$.ajax({
 		type: "post",
-		url: "sign-in",
+		url: "login",
 		data: JSON.stringify(signInData),
 		contentType: "application/json;charset=UTF-8",
 		dataType: "text",

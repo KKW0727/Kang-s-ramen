@@ -117,7 +117,7 @@ function calcMenuPrice(sum_menu) {
 function updateReservation() {
 	$.ajax({
 		type: "put",
-		url: "update-reservation",
+		url: "reservations/" + updateReservationInfo.reservation_code,
 		data: JSON.stringify(updateReservationInfo),
 		contentType: "application/json;charset=UTF-8",
 		dataType: "text",
@@ -126,7 +126,7 @@ function updateReservation() {
 				alert('予約の変更に失敗しました');
 			} else if (data == 1) {
 				alert('予約を変更しました');
-				location.replace('confirm-reservation');
+				location.replace('reservations');
 			}
 		},
 		error: function() {
