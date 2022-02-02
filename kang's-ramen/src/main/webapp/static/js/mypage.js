@@ -219,7 +219,7 @@ function getNumberReservation() {
 		dataType: "text",
 		success: function(data) {
 			if (data == 0) {
-				if (confirm('本当にキャンセルしますか?')) {
+				if (confirm('本当に退会してもよろしいですか?')) {
 					withdraw();
 				}
 			} else {
