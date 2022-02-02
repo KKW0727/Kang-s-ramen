@@ -36,7 +36,7 @@ update_btns.forEach((updateBtn, updateBtnIndex) => {
 			if (e.target.classList.contains('update_btn') || e.target.tagName == 'INPUT') {
 				return;
 			}
-			location.href = 'mypage';
+			location.href = id.value;
 
 		});
 
@@ -104,7 +104,7 @@ function checkPhone(input, inputIndex) {
 
 	$.ajax({
 		type: "post",
-		url: "account/registry/email-check",
+		url: "/kangs-ramen/registry/phone-check",
 		data: {
 			signUpPhone: input.value
 		},
@@ -187,7 +187,7 @@ function checkBirthday(input, inputIndex) {
 function updateUserInfo() {
 	$.ajax({
 		type: "put",
-		url: "users/" + updateUser.id,
+		url: updateUser.id,
 		data: JSON.stringify(updateUser),
 		contentType: "application/json;charset=UTF-8",
 		dataType: "text",
@@ -215,7 +215,7 @@ function updateUserInfo() {
 function getNumberReservation() {
 	$.ajax({
 		type: "get",
-		url: "num-reservation/" + id.value,
+		url:  id.value + "/num-reservation",
 		dataType: "text",
 		success: function(data) {
 			if (data == 0) {
