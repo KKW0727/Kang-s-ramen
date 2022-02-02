@@ -67,6 +67,33 @@
 						</article>
 					</section>
 					<a href="https://hanshintigers.jp/game/schedule/2022/03.html" target="black">詳しくはこちら</a>
+					<!-- show update game info button when administrator account -->
+					<c:if test="${login_user.user_email eq 'gig2010@naver.com' }">
+						<button type="button" class="to_update_game_btn" data-type="update_game">修正</button>
+					</c:if>
+					<form class="update_game_form invisible">
+						<article class="update_game_form_input">
+							<p>マイチーム</p>
+							<input type="text" value="hanshin">
+						</article>
+						<article class="update_game_form_input">
+							<p>相手チーム</p>
+							<input type="text">
+						</article>
+						<article class="update_game_form_input">
+							<p>マイチームスコア</p>
+							<input type="text">
+						</article>
+						<article class="update_game_form_input">
+							<p>相手チームスコア</p>
+							<input type="text">
+						</article>
+						<article class="update_game_form_input">
+							<p>試合情報url</p>
+							<input type="text">
+						</article>
+						<button class="update_game_btn">修正</button>
+					</form>
 				</article>
 				<article class="main_info invisible" data-type="access">
 					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.3739328617157!2d139.70305814035706!3d35.66779361954841!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188ca468112079%3A0xa93b4c85f75d9135!2z5LiA6JitIOWOn-Wuv-W6lw!5e0!3m2!1sja!2skr!4v1640008747334!5m2!1sja!2skr" width="250" height="250" style="border: 0;" allowfullscreen="" loading="lazy"></iframe>
@@ -79,28 +106,22 @@
 				<!-- show when click menu icon -->
 				<article class="main_info invisible" data-type="karaiRamen">
 					<img src="images/index/ramen1.png" class="main_info_menu_img">
-					<p>鳥出汁に唐辛子をベースに30数種類の材料を調合し何昼夜も寝かせ熟成させたソースを混ぜます。
-						そうすることで単なる辛さだけではなく様々な旨味が口の中に広がり、より一層ラーメンが奥深い味になります。</p>
+					<p>鳥出汁に唐辛子をベースに30数種類の材料を調合し何昼夜も寝かせ熟成させたソースを混ぜます。 そうすることで単なる辛さだけではなく様々な旨味が口の中に広がり、より一層ラーメンが奥深い味になります。</p>
 				</article>
 
 				<article class="main_info invisible" data-type="shoyu">
 					<img src="images/index/ramen2.png" class="main_info_menu_img">
-					<p>鶏肉と野菜を基本とする出汁に魚や牛肉などを入れて味をつけます。
-						醤油ソースを入れて味を増すので、すっきりとした黒味のスープが特徴です。
-						醤油ラーメンには、縮れたラーメンを使い、竹の子を漬けて作ったメンマやワケギ、蒲鉾、海苔、調味卵（味玉）、もやしを供えます。
-						チャーシューの代わりに牛肉を薄く切ったり、辛い唐辛子や中国風のスパイスを入れます。</p>
+					<p>鶏肉と野菜を基本とする出汁に魚や牛肉などを入れて味をつけます。 醤油ソースを入れて味を増すので、すっきりとした黒味のスープが特徴です。 醤油ラーメンには、縮れたラーメンを使い、竹の子を漬けて作ったメンマやワケギ、蒲鉾、海苔、調味卵（味玉）、もやしを供えます。 チャーシューの代わりに牛肉を薄く切ったり、辛い唐辛子や中国風のスパイスを入れます。</p>
 				</article>
 
 				<article class="main_info invisible" data-type="miso">
 					<img src="images/index/ramen3.png" class="main_info_menu_img">
-					<p>野菜や肉を中華鍋で炒めたときにダシとタレ（味噌）を入れてスープを作ります。
-						 醤油ラーメンの場合、ダシとタレを1杯ずつ器で混ぜて作りますが味噌ラーメンは中華鍋で調理しながらスープを作ることが特徴です。</p>
+					<p>野菜や肉を中華鍋で炒めたときにダシとタレ（味噌）を入れてスープを作ります。 醤油ラーメンの場合、ダシとタレを1杯ずつ器で混ぜて作りますが味噌ラーメンは中華鍋で調理しながらスープを作ることが特徴です。</p>
 				</article>
 
 				<article class="main_info invisible" data-type="tonkotsu">
 					<img src="images/index/ramen4.png" class="main_info_menu_img">
-					<p>豚骨ラーメンは、名前のとおり豚骨を使用したスープが特徴です。 強火で炊くことで白く濁ったスープを作ることができます。 
-						豚骨の中に含まれているゼラチンが溶けることで、 鮮やかな色とうまみを感じることができるのです。</p>
+					<p>豚骨ラーメンは、名前のとおり豚骨を使用したスープが特徴です。 強火で炊くことで白く濁ったスープを作ることができます。 豚骨の中に含まれているゼラチンが溶けることで、 鮮やかな色とうまみを感じることができるのです。</p>
 				</article>
 			</section>
 
