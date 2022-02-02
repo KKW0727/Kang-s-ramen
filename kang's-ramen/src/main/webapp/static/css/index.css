@@ -91,6 +91,28 @@ body {
 	margin-left: 22px;
 }
 
+/* update game info */
+.to_update_game_btn, 
+.update_game_btn {
+	width: 120px;
+	margin-top: 22px;
+}
+
+.update_game_form {
+	display: flex;
+	margin-top: 24px;
+}
+
+.update_game_form_input {
+	width: 130px;
+	margin-right: 12px;
+}
+
+.update_game_form_input p {
+	margin: 0;
+	text-align: center;
+}
+
 .invisible {
 	display: none;
 }
