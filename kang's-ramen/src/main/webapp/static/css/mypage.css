@@ -28,6 +28,10 @@ i {
 	align-items: center;
 }
 
+.canceled_reservation_description {
+	margin-top: 22px;
+}
+
 .canceled_reservation_info,
 .canceled_reservation_menu{
 	display: flex;
