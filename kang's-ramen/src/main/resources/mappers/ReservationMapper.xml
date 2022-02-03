@@ -15,9 +15,7 @@
 			#{time},
 			#{adult},
 			#{child},
-			#{seat},
-			now(),
-			now()
+			#{seat}
 		)
 	</insert>
 
@@ -32,7 +30,9 @@
 			#{miso},
 			#{tonkotsu},
 			#{discount},
-			#{price}
+			#{price},
+			now(),
+			now()
 		)
 	</insert>
 	
@@ -43,10 +43,17 @@
  			reservation_mst
     </select>
     
+    <select id ="getCanceledAllReservationCode" resultType="Integer">
+		select
+  			reservation_code
+		from
+ 			reservation_mst_backup
+    </select>
+    
      <select id="getAllReservation" resultType="com.spring.kangsRamen.model.json.ReservationVo">
         select
-   			rm.id,rm.reservation_code,rm.date,rm.time,rm.adult,rm.child,rm.seat,rm.create_date,rm.update_date,
-   			rd.karaiRamen,rd.shoyu,rd.miso,rd.tonkotsu,rd.discount,rd.price,p.payment_key
+   			rm.id,rm.reservation_code,rm.date,rm.time,rm.adult,rm.child,rm.seat,
+   			rd.karaiRamen,rd.shoyu,rd.miso,rd.tonkotsu,rd.discount,rd.price,rd.create_date,rd.update_date,p.payment_key
 		from
    			reservation_mst rm
      		left outer join reservation_dtl rd on(rm.reservation_code = rd.reservation_code)
@@ -57,8 +64,8 @@
    	
    	<select id="getOneReservation" resultType="com.spring.kangsRamen.model.json.ReservationVo">
 		select 
-			rm.id, rm.reservation_code,rm.date,rm.time,rm.adult,rm.child,rm.seat,rm.create_date,rm.update_date,
-   			rd.karaiRamen,rd.shoyu,rd.miso,rd.tonkotsu,rd.discount,rd.price
+			rm.id, rm.reservation_code,rm.date,rm.time,rm.adult,rm.child,rm.seat,
+   			rd.karaiRamen,rd.shoyu,rd.miso,rd.tonkotsu,rd.discount,rd.price,rd.create_date,rd.update_date
 		from 
 			reservation_mst rm 
 			left outer join reservation_dtl rd on(rm.reservation_code = rd.reservation_code) 
@@ -108,8 +115,8 @@
   		where
     		reservation_code = #{reservation_code};  
 	</delete>
-	
-	<insert id ="insertPayment" parameterType="com.spring.kangsRamen.model.json.InsertPaymentVo">
+
+	<insert id ="insertPayment" parameterType="com.spring.kangsRamen.model.json.PaymentVo">
 		insert into
 			payment
 		values(
@@ -119,5 +126,25 @@
 			now()
 		);
 	</insert>
-
+	
+	<delete id ="deletePayment">
+		delete
+		from
+			payment
+		where
+			reservation_code = #{reservation_code};
+	</delete>
+	
+	<select id ="getAllCanceledReservation" resultType="com.spring.kangsRamen.model.json.ReservationVo">
+		 select
+   			rmb.id,rmb.reservation_code,rmb.date,rmb.time,rmb.adult,rmb.child,rmb.seat,
+   			rdb.karaiRamen,rdb.shoyu,rdb.miso,rdb.tonkotsu,rdb.discount,rdb.price,pb.payment_key
+		from
+   			reservation_mst_backup rmb
+     		left outer join reservation_dtl_backup rdb on(rmb.reservation_code = rdb.reservation_code)
+     		left outer join payment_backup pb on(rmb.reservation_code = pb.reservation_code)     				 
+    	where
+			rmb.id = #{id};
+	</select>
+	
 </mapper>
