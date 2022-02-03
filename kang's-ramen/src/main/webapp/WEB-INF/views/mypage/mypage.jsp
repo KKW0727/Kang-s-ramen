@@ -66,6 +66,11 @@
 	
 	<section class="canceled_reservation">
 		<h1>キャンセル済みのご予約</h1>
+		<c:choose>
+		<c:when test="${empty canceledReservationList }">
+			<p class ="canceled_reservation_description">キャンセルした予約がありません。</p>
+		</c:when>
+		<c:otherwise>
 		<ul class="canceled_reservation_menu">
 			<li>日付</li>
 			<li>時間</li>
@@ -74,7 +79,7 @@
 			<li>メニュー</li>
 			<li>金額</li>
 			<li>決済</li>
-		</ul>
+		</ul>	
 		<c:forEach var="canceledReservation" items="${canceledReservationList }">
 		<ul class="canceled_reservation_info">
 			<li>${canceledReservation.date }</li>
@@ -94,10 +99,12 @@
 			</c:when>
 			<c:otherwise>
 			<li>キャンセル済み</li>
-			</c:otherwise>
+			</c:otherwise>		
 			</c:choose>	
 		</ul>
 		</c:forEach>
+		</c:otherwise>
+		</c:choose>
 	</section>
 
 </body>
