@@ -63,6 +63,42 @@
 			<button class="withdraw_btn">会員退会する</button>
 		</section>
 	</div>
+	
+	<section class="canceled_reservation">
+		<h1>キャンセル済みのご予約</h1>
+		<ul class="canceled_reservation_menu">
+			<li>日付</li>
+			<li>時間</li>
+			<li>人数</li>
+			<li>座席</li>
+			<li>メニュー</li>
+			<li>金額</li>
+			<li>決済</li>
+		</ul>
+		<c:forEach var="canceledReservation" items="${canceledReservationList }">
+		<ul class="canceled_reservation_info">
+			<li>${canceledReservation.date }</li>
+			<li>${canceledReservation.time }</li>
+			<li><c:if test="${canceledReservation.adult ne 0}">大人${canceledReservation.adult }</c:if>
+			<c:if test="${canceledReservation.child ne 0}">子供${canceledReservation.child }</c:if>
+			</li>
+			<li>${canceledReservation.seat }</li>
+			<li><c:if test="${canceledReservation.karaiRamen ne 0}">辛いラーメン${canceledReservation.karaiRamen }</c:if> 
+			<c:if test="${canceledReservation.shoyu ne 0}">醤油${canceledReservation.shoyu }</c:if> 
+			<c:if test="${canceledReservation.miso ne 0}">味噌${canceledReservation.miso }</c:if> 
+			<c:if test="${canceledReservation.tonkotsu ne 0}">豚骨${canceledReservation.tonkotsu }</c:if></li>
+			<li>${canceledReservation.price }</li>
+			<c:choose>
+			<c:when test="${empty canceledReservation.payment_key}">
+			<li>未決済</li>
+			</c:when>
+			<c:otherwise>
+			<li>キャンセル済み</li>
+			</c:otherwise>
+			</c:choose>	
+		</ul>
+		</c:forEach>
+	</section>
 
 </body>
 
