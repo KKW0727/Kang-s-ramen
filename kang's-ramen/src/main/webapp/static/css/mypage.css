@@ -19,6 +19,41 @@ i {
 	margin-top: 22px;
 }
 
+/* canceled reservations */
+.canceled_reservation {
+	max-width: 800px;
+	margin: 80px auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.canceled_reservation_info,
+.canceled_reservation_menu{
+	display: flex;
+	text-align: center;
+}
+
+.canceled_reservation_menu {
+	margin-top: 22px;
+}
+
+.canceled_reservation_info li,
+.canceled_reservation_menu li {
+	border: 1px solid gray;
+}
+
+.canceled_reservation_info li:not(:nth-child(5)),
+.canceled_reservation_menu li:not(:nth-child(5)) {
+	width: 120px;
+}
+
+.canceled_reservation_info li:nth-child(5),
+.canceled_reservation_menu li:nth-child(5){
+	width: 250px;
+}
+
+
 @media screen and (max-width: 420px) {
 	body {
 		font-size: 0.7em;
