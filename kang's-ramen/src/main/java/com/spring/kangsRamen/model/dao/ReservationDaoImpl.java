@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.spring.kangsRamen.model.json.InsertPaymentVo;
+import com.spring.kangsRamen.model.json.PaymentVo;
 import com.spring.kangsRamen.model.json.ReservationVo;
 
 @Repository
@@ -33,13 +33,13 @@ public class ReservationDaoImpl implements ReservationDao {
 	}
 
 	@Override
-	public List<ReservationVo> getAllReservation(int id) {
-		return session.selectList(NAME_SPACE + "getAllReservation", id);
+	public List<Integer> getCanceledAllReservationCode() {
+		return session.selectOne(NAME_SPACE + "getCanceledAllReservationCode");
 	}
 
 	@Override
-	public int updatePayment(int id) {
-		return session.update(NAME_SPACE + "updatePayment", id);
+	public List<ReservationVo> getAllReservation(int id) {
+		return session.selectList(NAME_SPACE + "getAllReservation", id);
 	}
 
 	@Override
@@ -68,8 +68,18 @@ public class ReservationDaoImpl implements ReservationDao {
 	}
 
 	@Override
-	public int insertPayment(InsertPaymentVo insertPaymentVo) {
-		return session.insert(NAME_SPACE + "insertPayment", insertPaymentVo);
+	public int insertPayment(PaymentVo paymentVo) {
+		return session.insert(NAME_SPACE + "insertPayment", paymentVo);
+	}
+
+	@Override
+	public int deletePayment(int reservation_code) {
+		return session.update(NAME_SPACE + "updatePayment", reservation_code);
+	}
+
+	@Override
+	public List<ReservationVo> getAllCanceledReservation(int id) {
+		return session.selectList(NAME_SPACE + "getAllCanceledReservation", id);
 	}
 
 }

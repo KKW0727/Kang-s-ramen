@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.kangsRamen.model.dao.ReservationDao;
-import com.spring.kangsRamen.model.json.InsertPaymentVo;
+import com.spring.kangsRamen.model.json.PaymentVo;
 import com.spring.kangsRamen.model.json.ReservationVo;
 
 @Service
@@ -18,14 +18,21 @@ public class ReservationServiceImpl implements ReservationService {
 	@Override
 	public int InsertReservation(ReservationVo reservationVo) {
 
-		String maxReservationCode = reservationDao.getMaxReservationCode();
-		if (maxReservationCode == null) {
-			reservationVo.setReservation_code(1);
-			maxReservationCode = "1";
+		String tempMaxReservationCode = reservationDao.getMaxReservationCode();
+		List<Integer> canceledReservationCodeList = reservationDao.getCanceledAllReservationCode();
+		int maxReservationCode = 0;
+		if (tempMaxReservationCode == null) {
+			maxReservationCode = 1;
 		} else {
-			reservationVo.setReservation_code(Integer.parseInt(maxReservationCode) + 1);
-			maxReservationCode = Integer.toString(Integer.parseInt(maxReservationCode) + 1);
+			maxReservationCode = Integer.parseInt(tempMaxReservationCode) + 1;
 		}
+		for (int canceledReservationCode : canceledReservationCodeList) {
+			if (canceledReservationCode == maxReservationCode) {
+				maxReservationCode++;
+			}
+		}
+		System.out.println("maxReservationCode:" + maxReservationCode);
+		reservationVo.setReservation_code(maxReservationCode);
 
 		int insertDtlResult = 0;
 
@@ -33,7 +40,7 @@ public class ReservationServiceImpl implements ReservationService {
 		if (insertMstResult == 1) {
 			insertDtlResult = reservationDao.InsertReservationDtl(reservationVo);
 			if (insertDtlResult == 1) {
-				return Integer.parseInt(maxReservationCode);
+				return reservationVo.getReservation_code();
 			}
 		}
 		return insertDtlResult;
@@ -42,11 +49,6 @@ public class ReservationServiceImpl implements ReservationService {
 	@Override
 	public List<ReservationVo> getAllReservation(int id) {
 		return reservationDao.getAllReservation(id);
-	}
-
-	@Override
-	public int updatePayment(int id) {
-		return reservationDao.updatePayment(id);
 	}
 
 	@Override
@@ -82,8 +84,18 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 
 	@Override
-	public int insertPayment(InsertPaymentVo insertPaymentVo) {
-		return reservationDao.insertPayment(insertPaymentVo);
+	public int insertPayment(PaymentVo paymentVo) {
+		return reservationDao.insertPayment(paymentVo);
+	}
+
+	@Override
+	public int deletePayment(int reservation_code) {
+		return reservationDao.deletePayment(reservation_code);
+	}
+
+	@Override
+	public List<ReservationVo> getAllCanceledReservation(int id) {
+		return reservationDao.getAllCanceledReservation(id);
 	}
 
 }
