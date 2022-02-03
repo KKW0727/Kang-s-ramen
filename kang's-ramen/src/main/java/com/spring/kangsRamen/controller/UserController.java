@@ -22,8 +22,6 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
-	@Autowired
-	private ReservationService reservationService;
 
 	@RequestMapping(value = "/registry", method = RequestMethod.GET)
 	public String signUp() {
@@ -77,10 +75,4 @@ public class UserController {
 		session.invalidate();
 		return "1";
 	}
-
-	@RequestMapping(value = "/num-reservation/{id}", method = RequestMethod.GET)
-	public String getNumberReservation(@PathVariable int id) {
-		return Integer.toString(reservationService.getAllReservation(id).size());
-	}
-
 }
