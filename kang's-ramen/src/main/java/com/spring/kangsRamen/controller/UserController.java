@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,8 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private ReservationService reservationService;
 
 	@RequestMapping(value = "/registry", method = RequestMethod.GET)
 	public String signUp() {
@@ -59,12 +62,13 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/users/{id}", method = RequestMethod.GET)
-	public String mypage(HttpServletRequest request) {
+	public String mypage(Model model, @PathVariable int id, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		UserDto user = (UserDto) session.getAttribute("login_user");
 		if (user == null) {
 			return "redirect:/index";
 		}
+		model.addAttribute("canceledReservationList", reservationService.getAllCanceledReservation(id));
 		return "mypage/mypage";
 	}
 
