@@ -17,13 +17,12 @@ main_icons.addEventListener('click', (e) => {
 	main_info_icons.forEach((main_info_icon) => {
 		main_info_icon.classList.remove('rotate');
 	});
-	console.log(e.target)
 	let target = e.target;
 	let type = target.dataset.type;
 	if (type == null) {
 		return;
 	}
-	if (type = 'game_info') {
+	if (type == 'game_info') {
 		getGameInfo();
 	}
 	main_infos.forEach((main_info) => {
@@ -43,7 +42,7 @@ reservation_icons.forEach((reservation_icon, reservation_iconIndex) => {
 			alert('ログインが必要です!!');
 		} else {
 			if (reservation_iconIndex == 0) {
-				location.href = 'reservation?game_result=' + game_result;
+				location.href = 'reservation';
 			} else if (reservation_iconIndex == 1) {
 				location.href = 'reservations';
 			}
