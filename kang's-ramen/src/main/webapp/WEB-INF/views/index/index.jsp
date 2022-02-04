@@ -58,39 +58,39 @@
 				<article class="main_info game_info invisible" data-type="game_info">
 					<section class="teams">
 						<article class="my_team team">
-							<img class="team_logo" src="images/index/hanshin.png">
-							<span class="my_team_score team_score">3</span>
+							<img class="team_logo" src="">
+							<span class="my_team_score team_score"></span>
 						</article>
 						<article class="opponent_team team">
-							<span class="opponent_team_score team_score">1</span>
-							<img class="team_logo" src="images/index/kyojin.png">
+							<span class="opponent_team_score team_score"></span>
+							<img class="team_logo" src="">
 						</article>
 					</section>
-					<a href="https://hanshintigers.jp/game/schedule/2022/03.html" target="black">詳しくはこちら</a>
+					<a href="" class="game_info_dtl" target="black">詳しくはこちら</a>
 					<!-- show update game info button when administrator account -->
 					<c:if test="${login_user.user_email eq 'gig2010@naver.com' }">
 						<button type="button" class="to_update_game_btn" data-type="update_game">修正</button>
 					</c:if>
-					<form class="update_game_form invisible">
+					<form action="game/edit" method="post" class="update_game_form invisible">
 						<article class="update_game_form_input">
 							<p>マイチーム</p>
-							<input type="text" value="hanshin">
+							<input type="text" value="hanshin" name="my_team">
 						</article>
 						<article class="update_game_form_input">
 							<p>相手チーム</p>
-							<input type="text">
+							<input type="text"  name="opponent_team">
 						</article>
 						<article class="update_game_form_input">
 							<p>マイチームスコア</p>
-							<input type="text">
+							<input type="text" name="my_team_score">
 						</article>
 						<article class="update_game_form_input">
 							<p>相手チームスコア</p>
-							<input type="text">
+							<input type="text" name="opponent_team_score">
 						</article>
 						<article class="update_game_form_input">
 							<p>試合情報url</p>
-							<input type="text">
+							<input type="text"  name="game_info_dtl_url">
 						</article>
 						<button class="update_game_btn">修正</button>
 					</form>
