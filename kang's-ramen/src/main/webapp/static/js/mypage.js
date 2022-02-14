@@ -43,9 +43,12 @@ update_btns.forEach((updateBtn, updateBtnIndex) => {
 	});
 });
 
+
 //click withdraw button
 withdraw_btn.addEventListener('click', () => {
-	getNumberReservation();
+	if (confirm(`本当に退会してもよろしいですか?`)) {
+		withdraw();
+	}
 });
 
 //check empty
@@ -211,47 +214,23 @@ function updateUserInfo() {
 	});
 }
 
-//get number reservation
-function getNumberReservation() {
-	$.ajax({
-		type: "get",
-		url:  id.value + "/num-reservation",
-		dataType: "text",
-		success: function(data) {
-			if (data == 0) {
-				if (confirm('本当に退会してもよろしいですか?')) {
-					withdraw();
-				}
-			} else {
-				if (confirm(`予約した${data}件もキャンセルされます。そのまま続けてもよろしいですか?`)) {
-					withdraw();
-				}
-			}
-		},
-		error: function() {
-
-		}
-	})
-}
-
 //withdraw
 function withdraw() {
 	$.ajax({
 		type: "delete",
-		url: "users/" + id.value,
+		url: id.value,
 		dataType: "text",
 		success: function(data) {
-			if (data == 1) {
+			if (data == 0) {
 				alert('会員退会が完了しました。これまで kang’sラーメンをご利用いただきありがとうございました!');
-				location.href = 'index';
-			} else if (data == 0) {
-				alert('会員退会に失敗しました。');
+				location.replace('/kangs-ramen/index');
+			} else {
+				alert(`予約した件が${data}件あります。すべての予約をキャンセルした後にもう一度やり直してください。`);
 			}
 		},
 		errror: function() {
 
 		}
-
 	});
 }
 
