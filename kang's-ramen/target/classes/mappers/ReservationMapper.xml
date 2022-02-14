@@ -81,8 +81,7 @@
 			time = #{time},
 			adult = #{adult},
 			child = #{child},
-			seat = #{seat},
-			update_date = now()
+			seat = #{seat}
 		where
 			reservation_code = #{reservation_code};
      </update>
@@ -95,7 +94,8 @@
     		shoyu = #{shoyu},
     		miso = #{miso},
     		tonkotsu = #{tonkotsu},
-    		price = #{price}
+    		price = #{price},
+    		update_date = now()
     	where
 			reservation_code = #{reservation_code};	
      </update>
