@@ -12,12 +12,15 @@ const game_result = document.querySelector('.game_result');
 const reservation_description = document.querySelector('.reservation_description');
 const payment_btn = document.querySelector('.payment_btn');
 const menu_price = document.querySelector('.menu_price');
+const loading_img_container = document.querySelector('.loading_img_container');
+const my_team_score = document.querySelector('.my_team_score');
+const opponent_team_score = document.querySelector('.opponent_team_score');
 
 let child = 0;
 let adult = 0;
 let sum_menu = 0;
 
-var reservationInfo = {
+let reservationInfo = {
 	id: id.value,
 	date: '',
 	time: '',
@@ -30,19 +33,22 @@ var reservationInfo = {
 	tonkotsu: 0,
 	discount: '割引なし',
 	price: 0,
-	payment: '未決済'
 }
 
-let paymentRequest = {
+let paymentInfo = {
+	id: id.value,
+	reservation_code: 0,
+	payment_key: '',
 	stripeToken: '',
 	stripeTokenType: '',
-	stripeEmail: ''
+	stripeEmail: '',
+	price: 0
 }
 
 //when load reservation page show discount message
-if (game_result.value == 1) {
+if (my_team_score.value > opponent_team_score.value) {
 	reservation_description.textContent = '昨日阪神タイガーズ勝利!　すべてのメニューが2000円割引です';
-} else if (game_result.value == 2) {
+} else {
 	reservation_description.textContent = '本日は割引がありません。';
 }
 
@@ -110,7 +116,7 @@ function checkInputService() {
 		reservationInfo.miso = num_menus[2].textContent;
 		reservationInfo.tonkotsu = num_menus[3].textContent;
 		reservationInfo.price = calcMenuPrice(sum_menu);
-		if (game_result.value == 1) {
+		if (my_team_score.value > opponent_team_score.value) {
 			reservationInfo.discount = '割引あり'
 		}
 		return true;
@@ -120,11 +126,11 @@ function checkInputService() {
 
 //menu price service 
 function calcMenuPrice(sum_menu) {
-	let price
-	if (game_result.value == 1) {
+	let price = 0;
+	if (my_team_score.value > opponent_team_score.value) {
 		price = 500 * sum_menu;
 
-	} else if (game_result.value == 2) {
+	} else {
 		price = 700 * sum_menu;
 	}
 	return price;
@@ -154,16 +160,25 @@ function countMenu(iconIndex, countIndex) {
 function reservation(msgType) {
 	$.ajax({
 		type: "post",
-		url: "reservation",
+		url: "reservations",
 		data: JSON.stringify(reservationInfo),
 		contentType: "application/json;charset=UTF-8",
 		dataType: "text",
 		success: function(data) {
+
 			if (data == 0) {
 				alert(`${msgType}に失敗しました。`);
-			} else if (data == 1) {
-				alert(`${msgType}が完了しました。`);
-				location.replace('confirm-reservation');
+				if (msgType == '決済') {
+					location.replace('error');
+				}
+			} else {
+				if (msgType == '決済') {
+					paymentInfo.reservation_code = data;
+					payment();
+				} else {
+					alert(`${msgType}が完了しました。`);
+					location.replace('reservations');
+				}
 			}
 		},
 		error: function() {
@@ -177,11 +192,11 @@ var handler = StripeCheckout.configure({
 	image: 'images/reservation/payment_img.png',
 	locale: 'ja',
 	token: function(token) {
-		paymentRequest.stripeToken = token.id,
-		paymentRequest.stripeTokenType = token.type,
-		paymentRequest.stripeEmail = token.email;
-		reservationInfo.payment = '決済完了';
-		payment();
+		paymentInfo.stripeToken = token.id;
+		paymentInfo.stripeTokenType = token.type;
+		paymentInfo.stripeEmail = token.email;
+		paymentInfo.price = reservationInfo.price;
+		reservation('決済');
 	},
 });
 
@@ -192,8 +207,9 @@ payment_btn.addEventListener('click', () => {
 			name: "kang'sラーメン",
 			description: '',
 			currency: 'jpy',
-			amount: reservationInfo.price + '円'
+			amount: reservationInfo.price + '円',
 		});
+
 	}
 });
 
@@ -203,12 +219,18 @@ function payment() {
 	$.ajax({
 		type: "post",
 		url: "payment",
-		data: JSON.stringify(paymentRequest),
+		data: JSON.stringify(paymentInfo),
 		contentType: "application/json;charset=UTF-8",
 		dataType: "text",
-		success: function(data, status) {
-			if (status == 'success') {
-				reservation('決済');
+		beforeSend: function() {
+			loading_img_container.classList.remove('invisible');
+		},
+		success: function(data) {
+			if (data == 1) {
+				alert('決済が完了しました。');
+				location.replace('reservations');
+			} else {
+				deleteReservation();
 			}
 
 		},
@@ -217,3 +239,32 @@ function payment() {
 		}
 	});
 }
+
+//delete reservation
+function deleteReservation() {
+	$.ajax({
+		type: "delete",
+		url: "reservations/" + paymentInfo.reservation_code,
+		dataType: "text",
+		success: function(data) {
+			if (data == 1) {
+				alert('決済に失敗しました。');
+			} else {
+				alert('決済に失敗しました。');
+			}
+			location.replace('error');
+		},
+		error: function() {
+
+		}
+
+	});
+}
+
+//show message when leave reservation page before payment is completed
+$(window).ajaxStart(function() {
+	history.pushState(null, document.title, location.href);
+	window.addEventListener('popstate', () => {
+		alert('決済中です。少々お待ちください。');
+	});
+})
