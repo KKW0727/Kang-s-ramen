@@ -14,7 +14,7 @@ const discount = document.querySelector('.discount');
 let child = 0;
 let adult = 0;
 let sum_menu = parseInt(num_menus[0].textContent) + parseInt(num_menus[1].textContent)
-		+ parseInt(num_menus[2].textContent) + parseInt(num_menus[3].textContent);
+	+ parseInt(num_menus[2].textContent) + parseInt(num_menus[3].textContent);
 
 var updateReservationInfo = {
 	reservation_code: reservation_code.value,
@@ -117,7 +117,7 @@ function calcMenuPrice(sum_menu) {
 function updateReservation() {
 	$.ajax({
 		type: "put",
-		url: "reservations/" + updateReservationInfo.reservation_code,
+		url: updateReservationInfo.reservation_code,
 		data: JSON.stringify(updateReservationInfo),
 		contentType: "application/json;charset=UTF-8",
 		dataType: "text",
@@ -126,7 +126,7 @@ function updateReservation() {
 				alert('予約の変更に失敗しました');
 			} else if (data == 1) {
 				alert('予約を変更しました');
-				location.replace('reservations');
+				location.replace('/kangs-ramen/reservations');
 			}
 		},
 		error: function() {
