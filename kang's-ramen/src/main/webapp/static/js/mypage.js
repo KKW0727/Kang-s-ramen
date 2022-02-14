@@ -186,7 +186,7 @@ function checkBirthday(input, inputIndex) {
 //update user
 function updateUserInfo() {
 	$.ajax({
-		type: "put",
+		type: "patch",
 		url: updateUser.id,
 		data: JSON.stringify(updateUser),
 		contentType: "application/json;charset=UTF-8",

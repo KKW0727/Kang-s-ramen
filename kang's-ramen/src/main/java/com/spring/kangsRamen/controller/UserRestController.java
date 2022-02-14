@@ -29,7 +29,7 @@ public class UserRestController {
 		return Integer.toString(userService.signUpInsert(signUpVo));
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/{id}", method = RequestMethod.PATCH)
 	public String updateUser(@RequestBody UpdateUserVo updateUserVo, HttpServletRequest request) {
 		int updateUserResult = userService.updateUser(updateUserVo);
 		if (updateUserResult == 1) {
