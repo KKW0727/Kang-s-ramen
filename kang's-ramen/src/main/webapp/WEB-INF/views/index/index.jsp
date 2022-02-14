@@ -34,6 +34,10 @@
 						<img src="images/index/user_menu1.png" class="main_user_icon" onclick="location.href = 'login'">
 						<img src="images/index/user_menu2.png" class="main_user_icon" onclick="location.href = 'registry'">
 					</c:when>
+					<c:when test="${login_user.user_email eq 'gig2010@naver.com'}">
+					<img src="images/index/admin_icon.png" class="main_user_icon" onclick="location.href = 'admin'">
+					<img src="images/index/user_menu4.png" class="logout main_user_icon">
+					</c:when>
 					<c:otherwise>
 						<img src="images/index/user_menu3.png" class="main_user_icon" onclick="location.href = 'users/${login_user.id}'">
 						<img src="images/index/user_menu4.png" class="logout main_user_icon">
@@ -41,10 +45,10 @@
 				</c:choose>
 				<img src="images/index/user_menu5.png" class="reservation main_user_icon">
 				<img src="images/index/user_menu6.png" class="reservation main_user_icon">
-				<img src="images/index/sub_menu1.png" class="main_info_icon">
+				<img src="images/index/sub_menu1.png" class="main_info_icon" data-type="concept">
 				<img src="images/index/sub_menu2.png" class="main_info_icon" data-type="game_info">
 				<img src="images/index/sub_menu3.png" class="main_info_icon" data-type="access">
-				<img src="images/index/sub_menu4.png" class="main_info_icon">
+				<img src="images/index/sub_menu4.png" class="main_info_icon" data-type="contact">
 				<img src="images/index/menu_icon1.png" class="main_info_icon" data-type="karaiRamen">
 				<img src="images/index/menu_icon2.png" class="main_info_icon" data-type="shoyu">
 				<img src="images/index/menu_icon4.png" class="main_info_icon" data-type="miso">
@@ -54,7 +58,9 @@
 			</section>
 			<!-- main infos -->
 			<section class="main_infos">
-				<article class="main_info invisible"></article>
+				<article class="main_info invisible" data-type="concept">
+					<img src="images/index/concept_img.png" width="350" class="concept_img">
+				</article>
 				<article class="main_info game_info invisible" data-type="game_info">
 					<section class="teams">
 						<article class="my_team team">
@@ -101,7 +107,11 @@
 						営業時間: 10:00 ~ 19:00<br> 定休日なし<br> 来店予約がおすすめです!!
 					</p>
 				</article>
-				<article class="main_info invisible">連絡先: 010-3401-2679</article>
+				<article class="main_info contact invisible" data-type="contact">
+				<h1>連絡先</h1>
+				<p>電話番号: 010-3401-2679</p>
+				<p>メールアドレス: kkw3401@gmail.com</p>
+				</article>
 
 				<!-- show when click menu icon -->
 				<article class="main_info invisible" data-type="karaiRamen">
