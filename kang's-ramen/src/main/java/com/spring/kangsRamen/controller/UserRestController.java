@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.spring.kangsRamen.model.dto.UserDto;
 import com.spring.kangsRamen.model.json.SignUpVo;
 import com.spring.kangsRamen.model.json.UpdateUserVo;
+import com.spring.kangsRamen.service.ReservationService;
 import com.spring.kangsRamen.service.UserService;
 
 @RestController
@@ -22,6 +23,8 @@ public class UserRestController {
 
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private ReservationService reservationService;
 
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.POST)
@@ -42,14 +45,15 @@ public class UserRestController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public String withdraw(@PathVariable int id, HttpServletRequest request) {
-		int withdrawResult = 0;
-		withdrawResult = userService.withdraw(id);
-		if (withdrawResult == 1) {
-			HttpSession session = request.getSession();
-			session.invalidate();
-			return Integer.toString(withdrawResult);
+		int num_reservation = reservationService.getAllReservation(id).size();
+		if (num_reservation == 0) {
+			if (userService.withdraw(id) == 1) {
+				HttpSession session = request.getSession();
+				session.invalidate();
+				return "0";
+			}
 		}
-		return Integer.toString(withdrawResult);
+		return Integer.toString(num_reservation);
 	}
 
 }
