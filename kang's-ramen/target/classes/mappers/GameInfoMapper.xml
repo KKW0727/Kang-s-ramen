@@ -10,5 +10,17 @@
 		from
 			game_info;
 	</select>
+	
+	<update id ="updateGameInfo" parameterType="com.spring.kangsRamen.admin.model.dto.GameInfoDto">
+	update
+		game_info
+	set
+ 		my_team = #{my_team},
+		opponent_team = #{opponent_team},
+		my_team_score = #{my_team_score},
+		opponent_team_score = #{opponent_team_score},
+		game_info_dtl_url = #{game_info_dtl_url};
+	</update>
+
 
 </mapper>
