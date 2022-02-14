@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+  <mapper namespace="com.spring.kangsRamen.admin.model.dao.AdminReservationDao">
+  	<select id ="getReservation" parameterType="com.spring.kangsRamen.admin.model.dto.SearchDto" resultType="com.spring.kangsRamen.admin.model.dto.ReservationDto">
+  	select
+		rm.id,rm.reservation_code,rm.date,rm.time,rm.adult,rm.child,rm.seat,
+		rd.karaiRamen,rd.shoyu,rd.miso,rd.tonkotsu,rd.price,rd.create_date as reservation_date,p.payment_key
+	from
+		reservation_mst rm
+		left outer join user_mst um on(um.id = rm.id)
+		left outer join reservation_dtl rd on(rm.reservation_code = rd.reservation_code)
+		left outer join payment p on(rm.id = p.id and rm.reservation_code = p.reservation_code)
+	<if test="searchType == 'phone'">
+	where
+		um.user_phone = #{searchContent}
+	</if>
+		;
+	</select>
+	
+	<select id ="getCanceledReservation" parameterType="com.spring.kangsRamen.admin.model.dto.SearchDto" resultType="com.spring.kangsRamen.admin.model.dto.ReservationDto">
+  	select
+		rmb.id,rmb.reservation_code,rmb.date,rmb.time,rmb.adult,rmb.child,rmb.seat,
+		rdb.karaiRamen,rdb.shoyu,rdb.miso,rdb.tonkotsu,rdb.price,rdb.cancel_date as reservation_date,pb.payment_key
+	from
+		reservation_mst_backup rmb
+		left outer join user_mst um on(um.id = rmb.id)
+		left outer join reservation_dtl_backup rdb on(rmb.reservation_code = rdb.reservation_code)
+		left outer join payment_backup pb on(rmb.id = pb.id and rmb.reservation_code = pb.reservation_code)
+	<if test="searchType == 'phone'">
+	where
+		um.user_phone = #{searchContent}
+	</if>
+		;
+	</select>
+</mapper>
