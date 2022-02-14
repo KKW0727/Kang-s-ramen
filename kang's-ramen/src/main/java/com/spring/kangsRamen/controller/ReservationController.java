@@ -9,9 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
+import com.spring.kangsRamen.admin.service.GameInfoService;
 import com.spring.kangsRamen.model.dto.UserDto;
 import com.spring.kangsRamen.service.ReservationService;
 
@@ -20,34 +19,40 @@ public class ReservationController {
 
 	@Autowired
 	private ReservationService reservationService;
+	@Autowired
+	private GameInfoService gameInfoService;
 
 	@RequestMapping(value = "/reservation", method = RequestMethod.GET)
-	public String reservation(@RequestParam int game_result, Model model, HttpServletRequest request) {
-		model.addAttribute("game_result", game_result);
+	public String reservation(Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		UserDto user = (UserDto) session.getAttribute("login_user");
 		if (user == null) {
-			return "redirect:index";
+			return "redirect:/index";
 		}
+		model.addAttribute("game_info", gameInfoService.getGameInfo());
 		return "reservation/reservation";
 	}
 
 	@RequestMapping(value = "/reservations", method = RequestMethod.GET)
-	public ModelAndView confirmReservation(HttpServletRequest request) {
-
+	public String confirmReservation(Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		UserDto user = (UserDto) session.getAttribute("login_user");
-
-		ModelAndView mav = new ModelAndView("reservation/confirm_reservation");
-		mav.addObject("reservationList", reservationService.getAllReservation(user.getId()));
-		return mav;
+		if (user == null) {
+			return "redirect:/index";
+		}
+		model.addAttribute("reservationList", reservationService.getAllReservation(user.getId()));
+		return "reservation/confirm_reservation";
 	}
 
 	@RequestMapping(value = "/reservations/{reservation_code}", method = RequestMethod.GET)
-	public ModelAndView updateReservation(@PathVariable int reservation_code) {
-		ModelAndView mav = new ModelAndView("reservation/update_reservation");
-		mav.addObject("reservationOne", reservationService.getOneReservation(reservation_code));
-		return mav;
+	public String updateReservation(@PathVariable int reservation_code, Model model, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserDto user = (UserDto) session.getAttribute("login_user");
+		if (user == null) {
+			return "redirect:/index";
+		}
+		model.addAttribute("reservationOne", reservationService.getOneReservation(reservation_code));
+		return "reservation/update_reservation";
 	}
 
 }
