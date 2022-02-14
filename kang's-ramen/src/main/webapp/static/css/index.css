@@ -49,6 +49,7 @@ body {
 	width: 150px;
 }
 
+/* main info game*/
 .game_info {
 	display: flex;
 	flex-direction: column;
@@ -91,9 +92,18 @@ body {
 	margin-left: 22px;
 }
 
+/* main info contact */
+.contact {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	color: #fff;
+	font-size: 1.2em;
+	line-height: 2.2em;
+}
+
 /* update game info */
-.to_update_game_btn, 
-.update_game_btn {
+.to_update_game_btn, .update_game_btn {
 	width: 120px;
 	margin-top: 22px;
 }
@@ -191,5 +201,9 @@ body {
 	}
 	.main_info_menu_img {
 		width: 100px;
+	}
+	/* concept image */
+	.concept_img {
+		width: 200px;
 	}
 }
