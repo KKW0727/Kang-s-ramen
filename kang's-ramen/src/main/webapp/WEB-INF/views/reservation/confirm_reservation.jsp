@@ -19,6 +19,7 @@
 </head>
 
 <body>
+	<input type="hidden" class="id" value="${login_user.id }">
 	<div class="confirm_reservation_container">
 		<button class="toHome_btn" onclick="location.href ='index'">
 			<i class="fas fa-arrow-left"></i>ホームへ
@@ -34,7 +35,7 @@
 		<section class="confirm_reservations">
 			<c:forEach var="reservation" items="${reservationList }">
 				<input type="hidden" class="reservation_code" value="${reservation.reservation_code }">
-				<input type="hidden" class="payment" value="${reservation.payment }">
+				<input type="hidden" class="payment_key" value="${reservation.payment_key }">
 				<article class="confirm_reservation">
 					<section class="confirm_reservation_items">
 						<article class="confirm_reservation_item">
@@ -63,7 +64,7 @@
 						</article>
 						<article class="confirm_reservation_item">
 							<i class="fas fa-yen-sign"></i>
-							<p class="menu_price">${reservation.price }円</p>
+							<p class="menu_price">${reservation.price }</p>
 						</article>
 					</section>
 					<section class="confirm_reservation_menus">
@@ -99,11 +100,11 @@
 					<!-- 決済する、決済キャンセル、決済キャンセル、予約キャンセル button  -->
 					<section class="confirm_reservation_btns">
 						<c:choose>
-							<c:when test="${reservation.payment eq '未決済'}">
+							<c:when test="${empty reservation.payment_key}">
 								<button type="button" class="payment_btn">決済する</button>
 							</c:when>
 							<c:otherwise>
-								<button type="button" class="payment_btn">決済キャンセル</button>
+								<button type="button" class="payment_btn cancel-payment_btn">決済キャンセル</button>
 							</c:otherwise>
 						</c:choose>
 						<button type="button" class="update_reservation_btn">予約変更</button>
