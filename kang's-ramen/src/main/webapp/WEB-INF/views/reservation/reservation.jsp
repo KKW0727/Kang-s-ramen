@@ -19,9 +19,10 @@
 <body>
 
 	<input type="hidden" class="id" value="${login_user.id }">
-	<input type="hidden" class="game_result" value="${game_result}">
+	<input type="hidden" class="my_team_score" value="${game_info.my_team_score}">
+	<input type="hidden" class="opponent_team_score" value="${game_info.opponent_team_score}">
 	<div class="loading_img_container invisible">
-	<img src="images/reservation/loading_img.gif" class="loading_img" width="150">
+		<img src="images/reservation/loading_img.gif" class="loading_img" width="150">
 	</div>
 	<div class="reservation_container">
 		<!-- reservation left -->
