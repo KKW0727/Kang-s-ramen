@@ -31,7 +31,6 @@ public class ReservationServiceImpl implements ReservationService {
 				maxReservationCode++;
 			}
 		}
-		System.out.println("maxReservationCode:" + maxReservationCode);
 		reservationVo.setReservation_code(maxReservationCode);
 
 		int insertDtlResult = 0;

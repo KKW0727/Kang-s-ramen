@@ -34,14 +34,12 @@ public class UserController {
 	@ResponseBody
 	@RequestMapping(value = "/registry/phone-check", method = RequestMethod.POST)
 	public String signUpPhoneCheck(@RequestParam String signUpPhone) {
-		System.out.println(signUpPhone);
 		return Integer.toString(userService.signUpPhoneCheck(signUpPhone));
 	}
 
 	@ResponseBody
 	@RequestMapping(value = "/registry/email-check", method = RequestMethod.POST)
 	public String signUpEmailCheck(@RequestParam String signUpEmail) {
-		System.out.println(signUpEmail);
 		return Integer.toString(userService.signUpEmailCheck(signUpEmail));
 	}
 

@@ -24,7 +24,6 @@ public class PaymentRestController {
 
 	@RequestMapping(value = "/refund", method = RequestMethod.POST)
 	public String refund(@RequestBody PaymentVo paymentVo) {
-		System.out.println(paymentVo);
 		return Integer.toString(paymentService.refund(paymentVo));
 	}
 }

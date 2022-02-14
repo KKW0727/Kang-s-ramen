@@ -34,7 +34,6 @@ public class PaymentService {
 		try {
 			// 決済依頼
 			charge = Charge.create(chargeMap);
-			System.out.println(charge);
 		} catch (StripeException e) {
 			e.printStackTrace();
 		}
@@ -60,7 +59,6 @@ public class PaymentService {
 
 		try {
 			refund = Refund.create(chargeMap);
-			System.out.println(refund);
 		} catch (StripeException e) {
 			e.printStackTrace();
 		}
