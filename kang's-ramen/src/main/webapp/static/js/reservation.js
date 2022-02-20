@@ -46,7 +46,7 @@ let paymentInfo = {
 }
 
 //when load reservation page show discount message
-if (my_team_score.value > opponent_team_score.value) {
+if (parseInt(my_team_score.value) > parseInt(opponent_team_score.value)) {
 	reservation_description.textContent = '昨日阪神タイガーズ勝利!　すべてのメニューが2000円割引です';
 } else {
 	reservation_description.textContent = '本日は割引がありません。';
@@ -116,7 +116,7 @@ function checkInputService() {
 		reservationInfo.miso = num_menus[2].textContent;
 		reservationInfo.tonkotsu = num_menus[3].textContent;
 		reservationInfo.price = calcMenuPrice(sum_menu);
-		if (my_team_score.value > opponent_team_score.value) {
+		if (parseInt(my_team_score.value) > parseInt(opponent_team_score.value)) {
 			reservationInfo.discount = '割引あり'
 		}
 		return true;
@@ -127,7 +127,7 @@ function checkInputService() {
 //menu price service 
 function calcMenuPrice(sum_menu) {
 	let price = 0;
-	if (my_team_score.value > opponent_team_score.value) {
+	if (parseInt(my_team_score.value) > parseInt(opponent_team_score.value)) {
 		price = 500 * sum_menu;
 
 	} else {
