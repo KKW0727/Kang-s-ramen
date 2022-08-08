@@ -47,7 +47,7 @@ let paymentInfo = {
 
 //when load reservation page show discount message
 if (parseInt(my_team_score.value) > parseInt(opponent_team_score.value)) {
-	reservation_description.textContent = '昨日阪神タイガーズ勝利!　すべてのメニューが2000円割引です';
+	reservation_description.textContent = '昨日阪神タイガーズ勝利!　すべてのメニューが200円割引です';
 } else {
 	reservation_description.textContent = '本日は割引がありません。';
 }
